@@ -7,8 +7,11 @@ public class CaesarPlayfair {
             if (Character.isLetter(ch)) {
                 if (encrypt)
                     cipherText.append((char) ('A' + (ch - 'A' + shift) % 26));
-                else
-                    cipherText.append((char) ('A' + (ch - 'A' - shift) % 26));
+                else {
+                    int c_shift = ch - 'A' - shift;
+                    int c_decrypt = c_shift < 0 ? 26 + c_shift : c_shift;
+                    cipherText.append((char) ('A' + c_decrypt));
+                }
             }
             else
                 cipherText.append(ch);
